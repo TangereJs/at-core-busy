@@ -1,0 +1,56 @@
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../at-core-spinner/at-core-spinner.html">
+<link rel="import" href="../at-core-signals/at-core-signals.html">
+
+<dom-module id="at-core-busy">
+  <style>
+    :host {
+      height: 24px;
+      width: 24px;
+    }
+
+    at-core-spinner /deep/ .spinner:not(:required):before {
+      border-top-color: white !important;
+    }
+
+    at-core-spinner .spinner:not(:required):before {
+      border-top-color: white !important;
+    }
+  </style>
+  
+  <template>
+    <at-core-signals on-busy-start="start" on-busy-end="end"></at-core-signals>
+    <at-core-spinner id="spinner" display="none"></at-core-spinner>
+  </template>
+  
+</dom-module>
+
+<script>
+  (function () {
+
+    // private, shared state
+    var state = {
+      active: 0
+    };
+
+
+
+    Polymer({
+      is: 'at-core-busy',
+      start: function (e) {
+        state.active++;
+        if (state.active > 0) this.$.spinner.display = "block";
+        //console.log("busy " + state.active);
+      },
+      end: function (e) {
+        state.active--;
+        if (state.active < 1) this.$.spinner.display = "none";
+        //console.log("busy " + state.active);
+      }
+      
+    });
+
+
+  })();
+</script>
+
