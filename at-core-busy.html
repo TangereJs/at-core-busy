@@ -7,6 +7,7 @@
     :host {
       height: 24px;
       width: 24px;
+      display: block;
     }
 
     at-core-spinner /deep/ .spinner:not(:required):before {
@@ -37,6 +38,7 @@
 
     Polymer({
       is: 'at-core-busy',
+      _scopeCssViaAttr: true,
       start: function (e) {
         state.active++;
         if (state.active > 0) this.$.spinner.display = "block";
