@@ -1,7 +1,7 @@
 {
   "name": "at-core-busy",
   "private": true,
-  "version": "1.0.0.1",
+  "version": "1.0.0.16",
   "dependencies": {
     "polymer": "Polymer/polymer#master"
   }
