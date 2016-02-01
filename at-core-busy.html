@@ -32,9 +32,8 @@
 
     // private, shared state
     var state = {
-      active: 0
+      active: false
     };
-
 
 
     Polymer({
@@ -49,22 +48,22 @@
       },
       start: function (e) {
         state.active = e.detail.busy;
-        if (state.active > 0) {
+        if (state.active) {
           this.$.spinner.type = this.type;
           this.$.spinner.display = "block";
           //document.body.style.cursor = "wait";
         }
-        //console.log("busy " + state.active + " " + e.detail.busy);
+        console.log("busy " + state.active + " " + e.detail.busy);
       },
 
       end: function (e) {        
         state.active = e.detail.busy;
-        if (state.active < 1) {
+        if (!state.active) {
           this.$.spinner.display = "none";
           //document.body.style.cursor = "default";
         }
 
-        //console.log("busy " + state.active + " " + e.detail.busy);
+        console.log("busy " + state.active + " " + e.detail.busy);
       }
       
     });
