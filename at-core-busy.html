@@ -1,4 +1,4 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../tangere/tangere.html">
 <link rel="import" href="../at-core-spinner/at-core-spinner.html">
 <link rel="import" href="../at-core-signals/at-core-signals.html">
 
@@ -19,12 +19,12 @@
     }
 
   </style>
-  
+
   <template>
     <at-core-signals on-busy-start="start" on-busy-end="end"></at-core-signals>
     <at-core-spinner id="spinner" display="none"></at-core-spinner>
   </template>
-  
+
 </dom-module>
 
 <script>
@@ -38,7 +38,6 @@
 
     Polymer({
       is: 'at-core-busy',
-      _scopeCssViaAttr: true,
       properties: {
         type: {
           type: String,
@@ -56,7 +55,7 @@
         //console.log("busy " + state.active + " " + e.detail.busy);
       },
 
-      end: function (e) {        
+      end: function (e) {
         state.active = e.detail.busy;
         if (!state.active) {
           this.$.spinner.display = "none";
@@ -64,10 +63,9 @@
         }
         //console.log("busy " + state.active + " " + e.detail.busy);
       }
-      
+
     });
 
 
   })();
 </script>
-
