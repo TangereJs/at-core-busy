@@ -22,7 +22,7 @@
 
   <template>
     <at-core-signals on-busy-start="start" on-busy-end="end"></at-core-signals>
-    <at-core-spinner id="spinner" display="none"></at-core-spinner>
+    <at-core-spinner id="spinner" type="[[type]]" display="none"></at-core-spinner>
   </template>
 
 </dom-module>
@@ -41,14 +41,12 @@
       properties: {
         type: {
           type: String,
-          value: 'spinner',
-          notify: true
+          value: 'spinner'
         }
       },
       start: function (e) {
         state.active = e.detail.busy;
         if (state.active) {
-          this.$.spinner.type = this.type;
           this.$.spinner.display = "block";
           //document.body.style.cursor = "wait";
         }

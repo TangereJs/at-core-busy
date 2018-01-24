@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+  <head>
+  <meta charset="UTF-8">
+  <title>at-core-busy tests</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="../../web-component-tester/browser.js"></script>
+  <link rel="import" href="../at-core-busy.html">
+  <link rel="import" href="../../iron-test-helpers/iron-test-helpers.html" />
+  </head>
+  <body>
+    <test-fixture id="propertyTest">
+      <template>
+        <at-core-busy></at-core-busy>
+      </template>
+    </test-fixture>
+
+  <script>
+    suite("ui interaction tests", function() { 
+      
+      var initialIconValue = 'now:error';
+      var intiialHtmlValue = '';
+
+      function getDisplayPropertyValue(elt) {
+        var computedStyle = window.getComputedStyle(elt);
+        var propertyValue = computedStyle.getPropertyValue('display');
+        return propertyValue;
+      }
+
+      function assertDisplayValue(elt, value) {
+        var dpVal = getDisplayPropertyValue(elt);
+        assert.equal(dpVal, value);
+      }
+
+      function assertHasClass(elt, className, expValue) {
+        var hasClass = Polymer.dom(elt).classList.contains(className);
+        assert.equal(hasClass, expValue);
+      }
+
+      function assertInitialState(elt, type, display) {
+        assert.equal(elt.type, type);
+
+        assert.equal(elt.$.spinner.display, display);
+        assert.equal(elt.$.spinner.type, type);
+      }
+
+      test("test 1", function() { 
+        
+        var elt = fixture("propertyTest");
+        
+        assertInitialState(elt, 'spinner', 'none');
+
+        Polymer.signal('busy-start');
+
+        assertInitialState(elt, 'spinner', 'block');
+
+        Polymer.signal('busy-end');
+
+        assertInitialState(elt, 'spinner', 'none');
+
+        elt.type = "wave";
+
+        assertInitialState(elt, 'wave', 'none');
+
+        Polymer.signal('busy-start');
+
+        assertInitialState(elt, 'wave', 'block');
+
+        Polymer.signal('busy-end');
+
+        assertInitialState(elt, 'wave', 'none');
+
+      });
+
+    });
+  </script>
+  </body>
+</html>
