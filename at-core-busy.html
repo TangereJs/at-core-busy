@@ -5,19 +5,12 @@
 <dom-module id="at-core-busy">
   <style>
     :host {
+      display: block;
       height: 24px;
       width: 24px;
-      display: block;
-    }
 
-    at-core-spinner /deep/ .spinner:not(:required):before {
-      border-top-color: white !important;
+      --at-core-spinner-color: white;
     }
-
-    at-core-spinner .spinner:not(:required):before {
-      border-top-color: white !important;
-    }
-
   </style>
 
   <template>
