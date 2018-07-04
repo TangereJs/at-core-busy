@@ -3,25 +3,23 @@
 <link rel="import" href="../at-core-signals/at-core-signals.html">
 
 <dom-module id="at-core-busy">
-  <style>
-    :host {
-      display: block;
-      height: 24px;
-      width: 24px;
-
-      --at-core-spinner-color: gray;
-    }
-  </style>
-
   <template>
+    <style>
+      :host {
+        display: block;
+        height: 24px;
+        width: 24px;
+
+        --at-core-spinner-color: gray;
+      }
+    </style>
     <at-core-signals on-busy-start="start" on-busy-end="end"></at-core-signals>
     <at-core-spinner id="spinner" type="[[type]]" display="none"></at-core-spinner>
   </template>
-
 </dom-module>
 
 <script>
-  (function () {
+  (function() {
 
     // private, shared state
     var state = {
@@ -37,7 +35,7 @@
           value: 'spinner'
         }
       },
-      start: function (e) {
+      start: function(e) {
         state.active = e.detail.busy;
         if (state.active) {
           this.$.spinner.display = "block";
@@ -46,7 +44,7 @@
         //console.log("busy " + state.active + " " + e.detail.busy);
       },
 
-      end: function (e) {
+      end: function(e) {
         state.active = e.detail.busy;
         if (!state.active) {
           this.$.spinner.display = "none";
