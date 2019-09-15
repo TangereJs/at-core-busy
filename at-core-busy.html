@@ -6,10 +6,6 @@
   <template>
     <style>
       :host {
-        display: block;
-        height: 24px;
-        width: 24px;
-
         --at-core-spinner-color: gray;
       }
     </style>
@@ -44,7 +40,7 @@
         //console.log("busy " + state.active + " " + e.detail.busy);
       },
 
-      end: function(e) {
+      end: function (e) {        
         state.active = e.detail.busy;
         if (!state.active) {
           this.$.spinner.display = "none";

@@ -1,7 +1,7 @@
 {
   "name": "at-core-busy",
   "private": true,
-  "version": "1.0.0.20",
+  "version": "1.0.0.24",
   "dependencies": {
     "tangere": "TangereJs/tangere#master",
     "at-core-spinner": "TangereJs/at-core-spinner#master",
